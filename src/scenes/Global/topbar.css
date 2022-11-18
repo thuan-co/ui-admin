@@ -1,0 +1,60 @@
+
+.top-bar-container {
+    position: relative;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 10px 0 10px;
+}
+
+.input-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 2px;
+}
+
+.input-search > input[type=text] {
+    outline: none;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 0 2px 2px 0;
+}
+
+.container-option-right {
+    display: flex;
+    gap: 5px;
+    margin-right: 10px;
+}
+
+.btn-notification {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: azure;
+    
+}
+.btn-setting {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: azure;
+}
+.btn-personal {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: azure;
+}
