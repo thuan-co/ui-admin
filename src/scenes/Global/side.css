@@ -1,6 +1,53 @@
 
 .side-bar-left {
     position: relative;
-    background-color: antiquewhite;
+    background-color: #fff;
     height: 100vh;
+}
+
+.avatar-container {
+
+    border: 1px solid #000;
+}
+
+.avatar-img > img{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.dashboard-container {
+    margin: 10px 0px;
+    border: 1px solid rgb(192, 27, 27);
+}
+
+.btn-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 5px;
+    margin: 10px 0px;
+    background-color: #fff;
+
+}
+
+.btn-items:hover {
+
+    background-color: rgb(187, 230, 233);
+}
+
+.btn-items:hover > button {
+    cursor: pointer;
+    background-color: rgb(187, 230, 233);
+}
+
+.btn-items > button {
+
+    outline: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
 }

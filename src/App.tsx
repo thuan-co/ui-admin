@@ -1,10 +1,9 @@
 import React from 'react';
-import HomePage from "./scenes/Dashboard";
-
+import { AppRouter } from './router/AppRouter';
 
 function App() {
   return (
-      <HomePage />
+      <AppRouter />
   );
 }
 
