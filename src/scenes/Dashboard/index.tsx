@@ -10,9 +10,12 @@ export default function HomePage() {
     <div className='home-page-admin-container'>
 
         <Sidebar />
-        <Outlet />
-        <Topbar />
 
+        <div className='right-container'>
+          <Topbar />
+
+          <Outlet />
+        </div>
         
        
     </div>

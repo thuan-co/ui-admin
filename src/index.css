@@ -48,7 +48,8 @@ code {
   background: #555;
 } 
 
-/* .home-page-admin-container {
+.home-page-admin-container {
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -60,7 +61,12 @@ code {
 }
 
 .right-container {
+  position: relative;
   display: grid;
   grid-template-rows: 10% 90%;
   gap: 10px;
-} */
+}
+.main-container {
+  background-color: aliceblue;
+  position: relative;
+}

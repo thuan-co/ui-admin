@@ -28,7 +28,7 @@ export default function Sidebar() {
 
         <div className='btn-items'>
           <CardTravelOutlinedIcon className='btn-icon'/>
-          <button><Link to="/admin/dashboard">Kinh doanh</Link></button>
+          <button><Link to="admin/dashboard">Kinh doanh</Link></button>
         </div>
 
       </div>

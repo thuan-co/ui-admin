@@ -5,7 +5,7 @@ type Props = {
 };
 export function Order(props: Props) {
   return (
-    <div>
+    <div className='main-container'>
         This is order page.
     </div>
   );
