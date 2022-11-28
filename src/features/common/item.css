@@ -1,0 +1,12 @@
+
+.item-product {
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 10% 85% 5%;
+}
+
+.left-item > img {
+    /* width: 100px; */
+    height: 89px;
+    object-fit: contain;
+}   
