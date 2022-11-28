@@ -22,7 +22,7 @@ export function AppRouter(props: Props) {
                 <Route path='admin/employee' element={<Employee />} />
                 <Route path='admin/order' element={<Order />} />
                 <Route path='admin/customer' element={<Customer />} />
-                <Route path='/admin/producer/list' element={<Product />} />
+                <Route path='admin/producer/list' element={<Product />} />
             </Route>
         </Routes>
     </BrowserRouter>

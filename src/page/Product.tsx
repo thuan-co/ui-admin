@@ -1,33 +1,47 @@
 // @flow
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import HookAPI from '../constants/HookAPI';
 import Item from '../features/common/item';
 import * as methodTypes from '../constants/method.httprequest'
 import axios from 'axios';
+import { useAppDispatch } from '../app/hooks';
+import { productAction, selectListLaptops } from '../features/redux-saga/productSlice';
 type Props = {
   
 };
 export default function Product(props: Props) {
 
-  const [filters, setFilter] = useState("Máy tính")
-  
+  const dispatch = useAppDispatch()
+
+  // const [filters, setFilter] = useState("Máy tính")
+  const isGetData = useRef(true)
   useEffect(() => {
-    // do you side effect here ...
-    console.log("Loading data from store...")
 
-    axios.get("http://localhost:8080/api/v1/items")
-    .then((req => {
-      if (req.status === 200) {
-        console.log("Lấy được dũ liệu từ database", req.data)
+     // do you side effect here ...
+    if (isGetData.current) {
+      isGetData.current = false
+      console.log("Loading data from store...")
 
-      }
-    })
-    )
+      dispatch(productAction.fetchDataLaptop(true))
+      // axios.get("http://localhost:8080/api/v1/items")
+      // .then((req => {
 
+      //   if (req.status === 200) {
+
+      //     console.log("Lấy được dũ liệu từ database", req.data)
+
+      //   }
+      // }))
+    }
     // const [result, error] = await HookAPI('/items',null, methodTypes.GET)
 
-  }, [filters])
+  }, [])
+  
+  // useEffect(() => {
 
+  // })
+  const listProduts = selectListLaptops
+  console.log("List products: ", listProduts)
   return (
     //useEffect
     <section className='list-products-container'>

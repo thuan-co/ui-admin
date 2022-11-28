@@ -1,5 +1,7 @@
+import {all} from 'redux-saga/effects'
+import productSaga from '../features/redux-saga/productSaga'
 
 export default function* rootSaga() {
-    
-    console.log("Root saga");
+    yield all([productSaga()])
+    // console.log("Root saga");
 }
