@@ -1,14 +1,9 @@
 // @flow
 import * as React from 'react';
+import { Laptop } from '../../models';
 import './item.css'
 
-type Device = {
-    avt: string,
-    name: string,
-    price: string,
-    updatedDate: string
-};
-export default function Item(props: Device) {
+export default function Item(props: Laptop) {
   return (
     <div className='item-product'>
 
@@ -19,7 +14,7 @@ export default function Item(props: Device) {
       <div className='middle-item'>
         <h3 className='name-item'>{props.name} </h3>
         <h3 className='price-item'>{props.price} VND</h3>
-        <span>Last updated: {props.updatedDate}</span>
+        <span>Last updated: {props.updated_date}</span>
       </div>
     </div>
   );

@@ -4,5 +4,5 @@ export interface Laptop {
     name: string;
     avt: string;
     price: string;
-    updated_date: Date;
+    updated_date: string;
 }

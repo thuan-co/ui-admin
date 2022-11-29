@@ -1,11 +1,10 @@
 // @flow
-import React, {useEffect, useState, useRef} from 'react';
-import HookAPI from '../constants/HookAPI';
-import Item from '../features/common/item';
-import * as methodTypes from '../constants/method.httprequest'
-import axios from 'axios';
+import { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../app/hooks';
-import { productAction, selectListLaptops } from '../features/redux-saga/productSlice';
+import { RootState } from '../app/store';
+import Item from '../features/common/item';
+import { productAction } from '../features/redux-saga/productSlice';
 type Props = {
   
 };
@@ -36,23 +35,22 @@ export default function Product(props: Props) {
     // const [result, error] = await HookAPI('/items',null, methodTypes.GET)
 
   }, [])
-  
-  // useEffect(() => {
 
-  // })
-  const listProduts = selectListLaptops
-  console.log("List products: ", listProduts)
+  const select = useSelector((state:RootState) => state.product.laptopsCurrent)
+
+
   return (
-    //useEffect
+    
     <section className='list-products-container'>
       <div className='list-content-products'>
-        
-        <Item avt='https://product.hstatic.net/1000026716/product/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-1_68062b63393b441ab293e4758fae2077.png' name="Laptop Gaming MSI Crosshair 15 B12UEZ 460VN" price="100.000" updatedDate="22/12/2022" />
 
-        <Item avt='https://product.hstatic.net/1000026716/product/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-1_68062b63393b441ab293e4758fae2077.png' name="Laptop Gaming MSI Crosshair 15 B12UEZ 460VN" price="100.000" updatedDate="22/12/2022" />
+        {select?.map((item, index) => {
+          return (
+            // <Item key={index} avt={item.avt} name={item.name} price={item.price} updatedDate={item.updated_date}/>
+            <Item key={index} {...item}/>
+          )
+        })}
         
-        <Item avt='https://product.hstatic.net/1000026716/product/gearvn-laptop-gaming-msi-crosshair-15-b12uez-460vn-1_68062b63393b441ab293e4758fae2077.png' name="Laptop Gaming MSI Crosshair 15 B12UEZ 460VN" price="100.000" updatedDate="22/12/2022" />
-
       </div>
     </section>
   );
