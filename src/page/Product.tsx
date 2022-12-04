@@ -5,6 +5,7 @@ import { useAppDispatch } from '../app/hooks';
 import { RootState } from '../app/store';
 import Item from '../features/common/item';
 import { productAction } from '../features/redux-saga/productSlice';
+
 type Props = {
   
 };
@@ -14,6 +15,7 @@ export default function Product(props: Props) {
 
   // const [filters, setFilter] = useState("Máy tính")
   const isGetData = useRef(true)
+  
   useEffect(() => {
 
      // do you side effect here ...

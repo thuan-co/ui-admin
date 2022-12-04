@@ -1,0 +1,10 @@
+.list-brands-container {
+    height: 400px;
+    width: 75%;
+}
+
+.img-logo-brand {
+    width: auto;
+    height: 20px;
+    object-fit: contain;
+}

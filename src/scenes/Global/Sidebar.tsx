@@ -79,25 +79,27 @@ export default function Sidebar() {
         <List component="div" className='option-items'>
 
           <Link to="/admin/product/add">
-            <ListItemButton className='li-btn'>           
-              {/* <ListItemIcon> */}
-                <AddCircleOutlineOutlinedIcon />
-              {/* </ListItemIcon> */}
-              <ListItemText className='item-content' primary="Thêm" />
+            <ListItemButton className='li-btn'>    
+              <AddCircleOutlineOutlinedIcon />
+            <ListItemText className='item-content' primary="Thêm" />
             </ListItemButton>
-           </Link>
+          </Link>
           
+          <Link to="/admin/product/list">
+            <ListItemButton className='li-btn'>
+              <FormatListBulletedOutlinedIcon />
+              <ListItemText className='item-content' primary="Danh sách"/>
+            </ListItemButton>
+          </Link>
 
-          <ListItemButton className='li-btn' onClick={handleClickProducer}>
-            {/* <ListItemIcon> */}
-              <BusinessOutlinedIcon />
-            {/* </ListItemIcon> */}
+          <ListItemButton className='li-btn' id='brand-list-btn' onClick={handleClickProducer}>
+            <BusinessOutlinedIcon />
             <ListItemText className='item-content' primary="Nhà sản xuất" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
 
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
+          <Collapse in={open} timeout="auto" unmountOnExit >
+            <List component="div" disablePadding >
 
               <Link to="/admin/producer/add">
                 <ListItemButton sx={{ pl: 4 }} >
@@ -108,14 +110,14 @@ export default function Sidebar() {
                 </ListItemButton>
               </Link> 
 
-              <Link to="/admin/producer/list">
+              <Link to="admin/producers">
                 <ListItemButton sx={{ pl: 4 }} >
                   {/* <ListItemIcon> */}
                     <FormatListBulletedOutlinedIcon />
                   {/* </ListItemIcon> */}
                   <ListItemText className='item-content' primary="Danh sách"/>
                 </ListItemButton>
-              </Link>
+              </Link> 
             </List>
           </Collapse>
         </List>

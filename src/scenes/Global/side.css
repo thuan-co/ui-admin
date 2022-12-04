@@ -2,7 +2,7 @@
 .side-bar-left {
     position: relative;
     background-color: #fff;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .avatar-container {
@@ -68,4 +68,12 @@ a {
 }
 .item-content {
     padding-left: 5px;
+}
+.list-products-container {
+    background-color: chartreuse;
+    padding: 20px 30px;
+}
+.list-content-products {
+    display: grid;
+    gap: 10px;
 }

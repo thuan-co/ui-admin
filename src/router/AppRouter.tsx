@@ -6,8 +6,10 @@ import { Customer } from '../page/Customer';
 import Dashboard from '../page/Dashboard';
 import Employee from '../page/Employee';
 import { Order } from '../page/Order';
+import ProducerPage from '../page/Producer';
 import  Product  from '../page/Product';
 import HomePage from '../scenes/Dashboard';
+import { ListBrands } from '../scenes/ListBrands';
 
 type Props = {
   
@@ -22,7 +24,9 @@ export function AppRouter(props: Props) {
                 <Route path='admin/employee' element={<Employee />} />
                 <Route path='admin/order' element={<Order />} />
                 <Route path='admin/customer' element={<Customer />} />
-                <Route path='admin/producer/list' element={<Product />} />
+                <Route path='admin/product/list' element={<Product />} />
+                <Route path='admin/producer/add' element={<ProducerPage />} />
+                <Route path='admin/producers' element={<ListBrands />} />
             </Route>
         </Routes>
     </BrowserRouter>
