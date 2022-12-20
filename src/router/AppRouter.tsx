@@ -5,30 +5,34 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Customer } from '../page/Customer';
 import Dashboard from '../page/Dashboard';
 import Employee from '../page/Employee';
+import { MakeProduct } from '../page/MakeProduct';
 import { Order } from '../page/Order';
 import ProducerPage from '../page/Producer';
 import  Product  from '../page/Product';
 import HomePage from '../scenes/Dashboard';
 import { ListBrands } from '../scenes/ListBrands';
+import { Login } from '../page/Login';
+import ProtectedRouter from './Protected';
 
-type Props = {
-  
-};
-export function AppRouter(props: Props) {
+export function AppRouter() {
   return (
     <BrowserRouter>
-        <Routes>
-            <Route path='/'  element={<HomePage />}>
-                
-                <Route path='admin/dashboard' index element={<Dashboard />} />
-                <Route path='admin/employee' element={<Employee />} />
-                <Route path='admin/order' element={<Order />} />
-                <Route path='admin/customer' element={<Customer />} />
-                <Route path='admin/product/list' element={<Product />} />
-                <Route path='admin/producer/add' element={<ProducerPage />} />
-                <Route path='admin/producers' element={<ListBrands />} />
-            </Route>
-        </Routes>
+      <Routes>
+        <Route path='/' index element={<Login />} />
+        
+        {/* <Route path='/admin'  element={<HomePage />}> */}
+        <Route path='/admin'  element={<ProtectedRouter />}>
+
+            <Route path='dashboard'  element={<Dashboard />} />
+            <Route path='employee' element={<Employee />} />
+            <Route path='order' element={<Order />} />
+            <Route path='customer' element={<Customer />} />
+            <Route path='product/list' element={<Product />} />
+            <Route path='producer/add' element={<ProducerPage />} />
+            <Route path='producers' element={<ListBrands />} />
+            <Route path='product/add' element={<MakeProduct />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 };

@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Message } from "../../../models/message";
+import { NavigateFunction } from "react-router-dom";
 
-const initialState : Message = {
+
+const initialState = {
+    // navigate: NavigateFunction,
     code: -1,
     content: '',
     open: false,

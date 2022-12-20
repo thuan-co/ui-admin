@@ -1,0 +1,28 @@
+.login-container {
+    position: relative;
+    width: 40%;
+    height: 50%;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.title-content {
+    margin-left: 20%;
+    margin-top: 50px;
+}
+.login-container > form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20%;
+    column-gap: 20px;
+}
+.form-login > div {
+    margin-top: 20px;
+}
+#btn-login {
+    width: 50%;
+    margin-top: 30px;
+    transform: translateX(50%)
+}

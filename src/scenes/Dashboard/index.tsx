@@ -16,8 +16,6 @@ export default function HomePage() {
 
           <Outlet />
         </div>
-        
-       
     </div>
   );
 }

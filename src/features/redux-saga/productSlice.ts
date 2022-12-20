@@ -31,7 +31,7 @@ export const productAction = productSlice.actions;
 
 // Selector
 export const selectListLaptops = (state:any) => state.products.laptopsCurrent;
-// expott const selctL
+
 // Reducer
 const productsReducer = productSlice.reducer;
 export default productsReducer;
