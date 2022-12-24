@@ -8,6 +8,7 @@ import listBrandsReducers from '../features/redux-saga/brand/listBrandSlice';
 import batteryReducers from '../features/redux-saga/battery/batterySlice';
 import connectReducers from '../features/redux-saga/connect/connectSlice';
 import loginReducer from '../features/redux-saga/auth/loginSlice';
+import cpuReducer from '../features/redux-saga/cpu/cpuSlice';
 // import counterReducer from '../features/counter/counterSlice';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,6 +23,7 @@ export const store = configureStore({
     battery: batteryReducers,
     connect: connectReducers,
     login: loginReducer,
+    cpu: cpuReducer,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware({
   //   thunk: true,

@@ -2,10 +2,28 @@
 import { Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import * as React from 'react';
 import { CpuReq, Speeds } from '../../models/cpu';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { cpuActions } from '../redux-saga/cpu/cpuSlice';
+import { RootState } from '../../app/store';
+
+function ShowCpu() {
+
+    const cpuDetails = useAppSelector((state:RootState) => state.cpu)
+
+    return (
+        <>
+            <div>Tên CPU: {cpuDetails.name}</div>
+        </>
+    )
+}
 
 export default function MakeCpu() {
 
     const [isNewCpu, setIsNewCpu] = React.useState(false);
+
+    const dispatch = useAppDispatch();
+
+    const isCpu = React.useRef(false)
 
     const [cpu, setCpu] = React.useState<CpuReq>({
         id: null,
@@ -16,13 +34,12 @@ export default function MakeCpu() {
         speeds: [],
         thread: '',
     })
-
     
     const [singleCore, setSingleCore] = React.useState<string>('')
     
     const [multipleCore, setMultipleCore] = React.useState<string>('')
 
-    const handleCloseFormCpu = ()=> {
+    const handleCloseFormCpu = () => {
         setIsNewCpu(false)
         const cpuVales = {...cpu}
         cpuVales.cached = ''
@@ -53,17 +70,20 @@ export default function MakeCpu() {
     
         setIsNewCpu(false)
     
-        console.log("Single core: ", singleCore)
-        console.log("Multiple core: ", multipleCore)
-    
         const cpuVales = {...cpu}
+
+        
         const speedsValue:Speeds[] = [
             {numberCores: 'Đơn nhân', performance: singleCore},
             {numberCores: 'Đa nhân', performance: multipleCore}
         ]
         cpuVales.speeds.push(...speedsValue)
         setCpu(cpuVales)
+    
+        isCpu.current = true
         console.log("CPU new information: ", cpu)
+
+        dispatch(cpuActions.makeNewCpu(cpu))
     }
     
     return (
@@ -81,26 +101,28 @@ export default function MakeCpu() {
                 label="Tạo mới"
             />
             
-            <div className='selected-cpu-container'>  
-                <Box>
-                    <FormControl>
-                    <InputLabel id='cpu-selection-label'>CPU</InputLabel>
-                    <Select
-                        id='cpu-selection'
-                        labelId='cpu-selection-label'
-                        label='CPU'
-                        // name='cpuName'
-                        sx = {{width: 200}}
-                        disabled={true}
-                    >
-                        <MenuItem >Ten</MenuItem>
-                        <MenuItem >Twenty</MenuItem>
-                        <MenuItem >Thirty</MenuItem>
-                    </Select>
-                    </FormControl>
-                </Box>
-            </div>
-
+            {(isCpu.current) ? <ShowCpu />: 
+                <div className='selected-cpu-container'> 
+                    <Box>
+                        <FormControl>
+                        <InputLabel id='cpu-selection-label'>CPU</InputLabel>
+                        <Select
+                            id='cpu-selection'
+                            labelId='cpu-selection-label'
+                            label='CPU'
+                            // name='cpuName'
+                            sx = {{width: 200}}
+                            disabled={isNewCpu}
+                            
+                        >
+                            <MenuItem >Ten</MenuItem>
+                            <MenuItem >Twenty</MenuItem>
+                            <MenuItem >Thirty</MenuItem>
+                        </Select>
+                        </FormControl>
+                    </Box>
+                </div>
+            }
             <div>  
                 <Dialog open={isNewCpu} onClose={handleCloseFormCpu}>
 
@@ -172,22 +194,22 @@ export default function MakeCpu() {
                     </div>
                     <div className='adding-speeds-cpu' >
                         <div className='list-input-speeds'>
-                        <TextField id='' variant='outlined'
-                            // type='number' 
-                            sx={{width:200, paddingRight: 2}}
-                            // name='numberCores'
-                            placeholder='Đơn nhân'
-                            disabled={true}               
-                        />
-                        <TextField id='' label='Tốc độ' variant='outlined'
-                            type='text' 
-                            sx={{width: 100}} 
-                            name='singleCore'
-                            value={singleCore}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                            setSingleCore(event.target.value)
-                            }}
-                        />                
+                            <TextField id='' variant='outlined'
+                                // type='number' 
+                                sx={{width:200, paddingRight: 2}}
+                                // name='numberCores'
+                                placeholder='Đơn nhân'
+                                disabled={true}               
+                            />
+                            <TextField id='' label='Tốc độ' variant='outlined'
+                                type='text' 
+                                sx={{width: 100}} 
+                                name='singleCore'
+                                value={singleCore}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                setSingleCore(event.target.value)
+                                }}
+                            />                
                         </div>
                         <div className='list-input-speeds'>
                         <TextField id='' variant='outlined'

@@ -6,10 +6,10 @@ import sendMessage from '../features/redux-saga/message/messageSaga'
 import newPhoneSaga from '../features/redux-saga/phone/phoneSaga'
 import productSaga from '../features/redux-saga/productSaga'
 import watcherAuthAccount from '../features/redux-saga/auth/loginSaga'
+import watcherMakingCpu from '../features/redux-saga/cpu/cpuSaga'
 
 export default function* rootSaga() {
     // yield all([newBrandSaga(), getListBrands(), newPhoneSaga(), watchMakeNewBattery(), watchMakeNewPhoneConnect()])
-    yield all([watchMakeNewPhoneConnect(), watcherAuthAccount(), newPhoneSaga(), getListBrands(),
-    newBrandSaga()])
+    yield all([watchMakeNewPhoneConnect(), watcherAuthAccount(), newPhoneSaga(), getListBrands(),  watcherMakingCpu(), newBrandSaga()])
     // console.log("Root saga");
 }
