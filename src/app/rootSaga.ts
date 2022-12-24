@@ -9,6 +9,7 @@ import watcherAuthAccount from '../features/redux-saga/auth/loginSaga'
 
 export default function* rootSaga() {
     // yield all([newBrandSaga(), getListBrands(), newPhoneSaga(), watchMakeNewBattery(), watchMakeNewPhoneConnect()])
-    yield all([watchMakeNewPhoneConnect(), watcherAuthAccount()])
+    yield all([watchMakeNewPhoneConnect(), watcherAuthAccount(), newPhoneSaga(), getListBrands(),
+    newBrandSaga()])
     // console.log("Root saga");
 }

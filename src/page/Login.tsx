@@ -14,8 +14,10 @@ import * as React from 'react';
 import './login.css';
 import { LoginDto } from '../models/admin';
 import { useAppDispatch } from '../app/hooks';
-import { loginAction } from '../features/redux-saga/auth/loginSlice';
+import { LoginSaga, loginAction } from '../features/redux-saga/auth/loginSlice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 export function Login() {
 
@@ -26,6 +28,7 @@ export function Login() {
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const isLoggedIn = useSelector((state:RootState) => state.login.isLogin)
 
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
 
@@ -45,12 +48,18 @@ export function Login() {
         event.preventDefault();
     };
 
-    const handleClickLogin = async () => {
+    const handleClickLogin = () => {
 
         console.log("Login information:", login)
-        await dispatch(loginAction.fetchAccount(login))
-        dispatch(loginAction.loginSuccess(navigate))
+        const dump : LoginSaga = {
+            account: login,
+            isLogin: false,
+        } 
+        dispatch(loginAction.fetchAccount(dump))
+        navigate("/admin")
+        // dispatch(loginAction.loginSuccess(navigate))
     }
+
     return (
         <section className='login-container'>
 

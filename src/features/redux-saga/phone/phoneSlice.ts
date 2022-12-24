@@ -1,25 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {PhoneReq} from "../../../models";
+import {NewPhoneReq, PhoneReq} from "../../../models";
 
-const initialState:PhoneReq = {
+const initialState:NewPhoneReq = {
     id: null,
     name: '',
     operation: '',
     weigh: '',
     price: '',
     dimensions: '',
-    dateAt: ''
+    dateAt: '',
+    quantity: '',
+    ram: '',
+    storage: '',
+    brandId: 0
 }
 
 const phoneSlice = createSlice({
     name: 'phone',
     initialState,
     reducers: {
+
         makeNewPhone(state, action:PayloadAction<PhoneReq>) {
-            let phoneTmp = state
-            phoneTmp = action.payload
-            return phoneTmp
-        }
+        },
+        makeNewBasePhone(state, action:PayloadAction<NewPhoneReq>) {
+            let tmp = state
+            tmp = action.payload
+            return tmp
+        }, 
+        successMakeNewBasePhone(state, action:PayloadAction<number>) {
+            let tmp = state;
+            tmp.id = action.payload
+            return tmp
+        },
     }
 })
 // Actions

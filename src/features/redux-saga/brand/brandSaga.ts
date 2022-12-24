@@ -47,7 +47,7 @@ function* workGetBrands() {
 
         console.log("Data return from server: ", result)
         yield put(listBrandsActions.fetchSuccess(result))
-        
+        return result
     }
     else if (error) {
         // TODO: Toast error.

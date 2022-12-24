@@ -1,19 +1,18 @@
-
 // @flow
-import * as React from 'react';
-import HomePage from '../scenes/Dashboard';
-import { Login } from '../page/Login';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { RootState } from '../app/store';
+import HomePage from '../scenes/Dashboard';
+import { ACCESS_TOKEN } from '../features/redux-saga/auth/loginSaga';
 
 const useAuth =()=> {
-
-    const dump = false
-    return dump
+    const isAuth = Boolean(localStorage.getItem(ACCESS_TOKEN))
+    return isAuth
 }
 
 export default function ProtectedRouter() {
 
     const auth = useAuth()
     // return auth?<HomePage />:<Login />
-    return auth? <Navigate to='/admin' replace /> : <Navigate to='/' replace />
+    return auth? <HomePage /> : <Navigate to='/' replace />
 };

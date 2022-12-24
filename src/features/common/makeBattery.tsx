@@ -14,7 +14,6 @@ import { BatteryDto } from '../../models';
 import { useAppDispatch } from '../../app/hooks';
 import { batteryActions } from '../redux-saga/battery/batterySlice';
 
-
 const ITEM_HEIGHT = 48
     const ITEM_PADDING_TOP = 8
     const MenuProps = {

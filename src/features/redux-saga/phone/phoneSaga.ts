@@ -1,26 +1,30 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { call, delay, fork, takeLatest } from "redux-saga/effects"
+import { call, delay, fork, put, take, takeLatest } from "redux-saga/effects"
 import PhoneApi from "../../../constants/phoneApi"
-import { PhoneReq } from "../../../models"
+import { NewPhoneReq, PhoneReq } from "../../../models"
 import { phoneActions } from "./phoneSlice"
 import * as methodTypes from '../../../constants/method.httprequest';
 
-function* workerMakeNewPhone(action: PayloadAction<PhoneReq>) {
+function* workerMakeNewPhone(action: PayloadAction<NewPhoneReq>) {
 
     yield delay(1000)
 
     console.log("Data in state", action.payload)
 
-    const [result, error] : any[] = yield call(PhoneApi, '/test', phoneActions.makeNewPhone.type, methodTypes.POST, action.payload)
+    const [result, error] : any[] = yield call(PhoneApi, '/test', phoneActions.makeNewBasePhone.type, methodTypes.POST, action.payload)
 
+    if (result) {
+        console.log("Phone id return from server: ", result)
+        yield put(phoneActions.successMakeNewBasePhone(result))
+        // yield delay(1000)
+    }
     console.log("Data return from server: ", result)
     console.log("Error return from server: ", error)
 }
 
-function* watchMakeNewPhone(){
+function* watchMakeNewPhone(){   
     
-    
-    yield takeLatest(phoneActions.makeNewPhone, workerMakeNewPhone)
+    yield takeLatest(phoneActions.makeNewBasePhone, workerMakeNewPhone)
 }
 
 export default function* newPhoneSaga() {

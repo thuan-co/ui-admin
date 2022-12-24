@@ -13,15 +13,18 @@ import HomePage from '../scenes/Dashboard';
 import { ListBrands } from '../scenes/ListBrands';
 import { Login } from '../page/Login';
 import ProtectedRouter from './Protected';
+import CustomBrowserRouter from './CustomBrowserRouter';
+
 
 export function AppRouter() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+    
       <Routes>
         <Route path='/' index element={<Login />} />
         
-        {/* <Route path='/admin'  element={<HomePage />}> */}
-        <Route path='/admin'  element={<ProtectedRouter />}>
+        <Route path='/admin'  element={<HomePage />}>
+        {/* <Route path='/admin'  element={<ProtectedRouter />}> */}
 
             <Route path='dashboard'  element={<Dashboard />} />
             <Route path='employee' element={<Employee />} />
@@ -33,6 +36,6 @@ export function AppRouter() {
             <Route path='product/add' element={<MakeProduct />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 };

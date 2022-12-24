@@ -10,6 +10,20 @@ export interface PhoneReq {
     weigh: string
 }
 
+export interface NewPhoneReq {
+    id?: number | null
+    dateAt?: string
+    dimensions: string
+    name: string
+    operation: string
+    price: string
+    weigh: string
+    ram: string
+    storage: string
+    quantity: string
+    brandId: number | null
+}
+
 export interface BatteryDto {
     id?: number | null
     capacity: string

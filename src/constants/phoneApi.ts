@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { phoneActions } from '../features/redux-saga/phone/phoneSlice';
-import { PhoneReq } from '../models';
+import { NewPhoneReq, PhoneReq } from '../models';
 import * as methodTypes from './method.httprequest';
 
-export default function PhoneApi(endpoint: string, action?:string, method?:string, data?:PhoneReq) {
+export default function PhoneApi(endpoint: string, action?:string, method?:string, data?:NewPhoneReq) {
     
     const baseUrl = "http://localhost:8080/api/v1"
     let header = {
@@ -41,9 +41,9 @@ export default function PhoneApi(endpoint: string, action?:string, method?:strin
     //     )
     // }
 
-    else if (method === methodTypes.POST && action === phoneActions.makeNewPhone.type) {
+    else if (method === methodTypes.POST && action === phoneActions.makeNewBasePhone.type) {
         
-        console.log("Create phone")
+        // console.log("Create phone")
         return axios({
             method: methodTypes.POST,
             url: baseUrl + endpoint,
@@ -53,7 +53,7 @@ export default function PhoneApi(endpoint: string, action?:string, method?:strin
             response => {
                 const result = response.data
 
-                console.log("Result of data return by Spring boot", result)
+                // console.log("Result of data return by Spring boot", result)
 
                 return [result, null];
             }

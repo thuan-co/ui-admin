@@ -28,7 +28,11 @@ export const store = configureStore({
   //   serializableCheck: false,
   //   immutableCheck: false,
   // }),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoreActions: true
+    }
+  }).concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);
