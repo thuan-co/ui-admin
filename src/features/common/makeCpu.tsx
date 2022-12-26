@@ -1,10 +1,11 @@
 // @flow
 import { Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import * as React from 'react';
-import { CpuReq, Speeds } from '../../models/cpu';
+import { CpuDto, CpuReq, Speeds } from '../../models/cpu';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { cpuActions } from '../redux-saga/cpu/cpuSlice';
 import { RootState } from '../../app/store';
+import { listCpusAction } from '../redux-saga/cpu/listCpusSlice';
 
 function ShowCpu() {
 
@@ -21,7 +22,11 @@ export default function MakeCpu() {
 
     const [isNewCpu, setIsNewCpu] = React.useState(false);
 
+    const [idCpu, setIdCpu] = React.useState<number | null>(null)
+
     const dispatch = useAppDispatch();
+
+    const selector:CpuDto[] = useAppSelector((state:RootState)=>state.cpus)
 
     const isCpu = React.useRef(false)
 
@@ -61,7 +66,7 @@ export default function MakeCpu() {
     }
 
     const handleChangeSpecCpu = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("CPU specifications: ", cpu)
+        // console.log("CPU specifications: ", cpu)
         const {value, name} = event.target
         setCpu({...cpu, [name]: value})
     }
@@ -81,10 +86,14 @@ export default function MakeCpu() {
         setCpu(cpuVales)
     
         isCpu.current = true
-        console.log("CPU new information: ", cpu)
+        // console.log("CPU new information: ", cpu)
 
         dispatch(cpuActions.makeNewCpu(cpu))
     }
+
+    React.useEffect(() => {
+        dispatch(listCpusAction.getAllCpus())
+    },[])
     
     return (
         <div className="container-cpu">
@@ -104,25 +113,30 @@ export default function MakeCpu() {
             {(isCpu.current) ? <ShowCpu />: 
                 <div className='selected-cpu-container'> 
                     <Box>
-                        <FormControl>
-                        <InputLabel id='cpu-selection-label'>CPU</InputLabel>
-                        <Select
-                            id='cpu-selection'
-                            labelId='cpu-selection-label'
-                            label='CPU'
-                            // name='cpuName'
-                            sx = {{width: 200}}
-                            disabled={isNewCpu}
-                            
-                        >
-                            <MenuItem >Ten</MenuItem>
-                            <MenuItem >Twenty</MenuItem>
-                            <MenuItem >Thirty</MenuItem>
-                        </Select>
+                        <FormControl sx={{ m: 1, minWidth: 80 }}>
+                            <InputLabel id='cpu-selection-label'>CPU</InputLabel>
+                            <Select
+                                id='cpu-selection'
+                                labelId='cpu-selection-label'
+                                label='CPU'
+                                name='idCpu'
+                                value={idCpu}
+                                // sx = {{width: 200}}
+                                disabled={isNewCpu}
+                                onChange={(e)=> {
+                                    setIdCpu(e.target.value as number)
+                                }}
+                            >
+                                {selector.map((value, key) =>(
+                                    <MenuItem key={key} value={value.id}>{value.name}</MenuItem>
+                                ))}
+                                
+                            </Select>
                         </FormControl>
                     </Box>
                 </div>
             }
+
             <div>  
                 <Dialog open={isNewCpu} onClose={handleCloseFormCpu}>
 

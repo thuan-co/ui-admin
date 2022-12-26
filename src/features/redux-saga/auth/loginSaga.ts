@@ -2,7 +2,7 @@ import { call, fork, put, take, takeLatest } from "redux-saga/effects";
 import { LoginSaga, loginAction } from "./loginSlice";
 import HookAPI from "../../../constants/HookAPI";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { LoginDto } from "../../../models/admin";
+import { AuthResponse, LoginDto } from "../../../models/admin";
 import { customHistory } from "../../../router/CustomBrowserRouter";
 
 export const ACCESS_TOKEN = 'access_token'
@@ -13,12 +13,11 @@ function* handleLogin(action: PayloadAction<LoginSaga>) {
 
     if (result) {
 
-        const {access_token, refresh_token} = result
-        localStorage.setItem("access_token", access_token)
-        localStorage.setItem("refresh_token", refresh_token)
+        const account:AuthResponse = result
+        localStorage.setItem("access_token", account.access_token)
+        localStorage.setItem("refresh_token", account.refresh_token)
         yield put(loginAction.loginSuccess)
         customHistory.push('/admin')
-        // console.log("action login success")
     }
     else {
         // notify error to client

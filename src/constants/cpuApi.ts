@@ -53,7 +53,7 @@ export default function CpuApi(endpoint: string, action?:string, method?:string,
             response => {
                 const result = response.data
 
-                // console.log("Result of data return by Spring boot", result)
+                console.log("Result of data return by Spring boot", result)
 
                 return [result, null];
             }

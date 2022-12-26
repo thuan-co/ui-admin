@@ -56,7 +56,7 @@ export function Login() {
             isLogin: false,
         } 
         dispatch(loginAction.fetchAccount(dump))
-        navigate("/admin")
+        // navigate("/admin")
         // dispatch(loginAction.loginSuccess(navigate))
     }
 

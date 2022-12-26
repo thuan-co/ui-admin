@@ -5,7 +5,7 @@ import { LoginDto } from "../models/admin";
 
 export default function HookAPI(endpoint: string , action?: string , method?:string, data?:LoginDto) {
     // axios.defaults.withCredentials = true;
-    const baseAPI = "http://localhost:8087/api/";
+    const baseAPI = "http://localhost:8087/api/v1/";
 
     
     // if (Cookies.get("jwt_token")) {
@@ -49,7 +49,7 @@ export default function HookAPI(endpoint: string , action?: string , method?:str
     } else if (method === methodTypes.POST && action === loginAction.fetchAccount.type) {
 
         let header = {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         };
 
         return axios(baseAPI + endpoint, {

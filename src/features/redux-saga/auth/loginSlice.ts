@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { LoginDto } from "../../../models/admin";
-import { NavigateFunction, NavigationType } from "react-router-dom";
-import assert from "assert";
-import { customHistory } from "../../../router/CustomBrowserRouter";
 
 export interface LoginSaga {
     account?: LoginDto
@@ -27,10 +24,11 @@ const loginSlice = createSlice({
             return tmp
         },
         loginSuccess(state) {
-            
-            state.isLogin = true
+            let tmp = state
+            // tmp.account = action.payload
+            tmp.isLogin = true
             // customHistory.push('/admin')
-            return state
+            return tmp
         },
         loginFailed(state, action:PayloadAction<string>) {
 

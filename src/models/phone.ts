@@ -53,3 +53,8 @@ export interface ScreenDto {
     tech: string
     resolution: string
 }
+
+export interface GpuDto {
+    id: number | string
+    name: string
+}

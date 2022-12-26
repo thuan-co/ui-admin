@@ -4,6 +4,7 @@ import { CpuReq } from "../../../models/cpu";
 import { cpuActions } from "./cpuSlice";
 import CpuApi from "../../../constants/cpuApi";
 import { POST } from "../../../constants/method.httprequest";
+import { listCpusAction } from "./listCpusSlice";
 
 function* handleMakingCpu(action:PayloadAction<CpuReq>) {
 
@@ -28,4 +29,27 @@ function* workerMakingCpu() {
 export default function* watcherMakingCpu() {
 
     yield fork(workerMakingCpu);
+}
+
+function* handleGetAllCpus() {
+
+    // Call api 
+    const [result, error]:any[] = yield call(CpuApi, '/cpus')
+    if (result) {
+        yield put(listCpusAction.fetchSuccess(result))
+    }
+    else {
+        //TODO: message error 
+        console.log("Get all cpus error: ", error)
+    }
+    
+}
+
+function* workerGetAllCpus() {
+    yield take(listCpusAction.getAllCpus)
+    yield fork(handleGetAllCpus)
+}
+
+export function* watcherGetAllCpus() {
+    yield fork(workerGetAllCpus);
 }

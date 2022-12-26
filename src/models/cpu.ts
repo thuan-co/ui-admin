@@ -14,3 +14,8 @@ export interface CpuReq {
     thread: string
 }
 
+export interface CpuDto {
+    id: number
+    name: string
+    core: number
+}
