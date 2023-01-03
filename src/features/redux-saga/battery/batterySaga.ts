@@ -1,19 +1,30 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { delay, fork, takeLatest } from "redux-saga/effects";
+import { call, delay, fork, put, take } from "redux-saga/effects";
 import { BatteryDto } from "../../../models";
 import { batteryActions } from "./batterySlice";
+import PhoneApi from "../../../constants/phoneApi";
+import { POST } from "../../../constants/method.httprequest";
+import { updatingPhoneActions } from "../phone/updateSlice";
 
-function* workerMakeBattery(action:PayloadAction<BatteryDto>) {
+function* handleMakeBattery(action:PayloadAction<BatteryDto>) {
     
-    console.log("Make new battery(Saga): ", action.payload)
+    console.log("Make new battery (Saga): ", action.payload)
 
     // call api to crate new battery
-    yield delay(1000)
+    const [result, error]:any[] = yield call(PhoneApi, '/create/battery', action.type, POST, action.payload)
+
+    if (result) {
+        // TODO: Notifying success
+        yield put(batteryActions.successMakeBattery(result))
+        yield put(updatingPhoneActions.updatingBatteryForPhone(result.id))
+    }
+    // yield delay(1000)
 }
 
 function* watcherMakeNewBattery() {
     
-    yield takeLatest(batteryActions.makeNewBattery, workerMakeBattery)
+    const action:PayloadAction<BatteryDto> = yield take(batteryActions.makeNewBattery)
+    yield fork(handleMakeBattery, action)
 }
 
 export default function* watchMakeNewBattery() {

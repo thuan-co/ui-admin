@@ -39,7 +39,7 @@
 }
 
 .container-battery {
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
     position: relative;
 }
@@ -52,17 +52,13 @@
     display: grid;
     grid-template-columns: 50% 50%;
 
-    background-color: red; 
+    /* background-color: red;  */
 }
 .make-battery > div {
     margin-right: 10px;
     margin-bottom: 10px;
 }
-.result-make-battery {
-    /* position: absolute; */
-    /* background-color: #fff; */
-    background-color: rgb(25, 161, 47);
-}
+
 .btn-action-battery {
     display: grid;
     width: 25%;
@@ -82,7 +78,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     margin: 10px;
     column-gap: 10px;
 }
@@ -92,7 +88,7 @@
 .result-make-connect {
     width: calc(100% - 20px);
     height: 100px;
-    background-color: red;
+    /* background-color: red; */
     margin: 10px;
 }
 /* camera container */
@@ -103,7 +99,7 @@
 }
 .make-camera-container {
     width: 50%;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 .input-content-camera {
     display: grid;
@@ -140,7 +136,7 @@
     flex-direction: row;
     margin: 10px;
     gap: 15px;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
 .result-screen {
@@ -156,4 +152,10 @@
     display: flex;
     margin-left: 10px;
     gap: 15px;
+}
+
+.img-phone-container {
+    display: flex;
+    position: relative;
+    align-items: center;
 }

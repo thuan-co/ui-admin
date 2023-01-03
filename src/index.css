@@ -68,7 +68,7 @@ code {
 .right-container {
   position: relative;
   display: grid;
-  grid-template-rows: 10% 90%;
+  /* grid-template-rows: 10% 90%; */
   gap: 10px;
 }
 .main-container {

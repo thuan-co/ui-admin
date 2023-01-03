@@ -20,6 +20,7 @@ const connectSlice = createSlice({
         successMakeNewConnectPhone(state, actions: PayloadAction<ConnectDto>) {
 
             console.log("Tạo thành công kết nối")
+            return actions.payload
         }
     }
 })

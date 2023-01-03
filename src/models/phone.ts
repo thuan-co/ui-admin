@@ -43,6 +43,8 @@ export interface CameraDto {
     id?: number | null
     solution: string
     features: string
+    position: 'rear' | 'front' | null
+    phoneId?: number | null
 }
 
 export interface ScreenDto {
@@ -52,9 +54,16 @@ export interface ScreenDto {
     dimension: string
     tech: string
     resolution: string
+    phoneId?: number | null
 }
 
 export interface GpuDto {
     id: number | string
     name: string
+}
+
+export interface ImgPhoneDto {
+    avt:string
+    dimension:string
+    specification:string
 }

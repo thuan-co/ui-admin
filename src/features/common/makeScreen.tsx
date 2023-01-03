@@ -2,6 +2,9 @@
 import { Button, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField } from '@mui/material';
 import * as React from 'react';
 import { ScreenDto } from '../../models';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { screenActions } from '../redux-saga/screen/screenSlice';
+import { RootState } from '../../app/store';
 
 const notes = [
     'Màn hình chính',
@@ -12,6 +15,8 @@ const notes = [
 
 export default function MakeScreen() {
 
+    const phoneId = useAppSelector((state:RootState)=>state.phone.id)
+
     const initialState: ScreenDto = {
         id: null,
         brightest: '',
@@ -19,7 +24,11 @@ export default function MakeScreen() {
         note: '',
         resolution: '',
         tech: '',
+        phoneId: null,
     }
+
+    const dispatch = useAppDispatch()
+
     const [screen, setScreen] = React.useState<ScreenDto>(initialState)
 
     const handleChangeNote = (event: SelectChangeEvent<typeof screen.note>) => {
@@ -34,6 +43,17 @@ export default function MakeScreen() {
         const {value, name} = event.target
         setScreen({...screen, [name]: value})
     }
+
+    const handleOnClick = () => {
+        
+        // console.log("Screen:", screen);
+        dispatch(screenActions.makeNewScreen(screen))
+    }
+
+    React.useEffect(()=>{
+        setScreen({...screen, phoneId: phoneId})
+    }, [phoneId])
+
     return (
         <div className='screen-container'>
             <h5>Màn hình</h5>
@@ -43,7 +63,7 @@ export default function MakeScreen() {
                         <InputLabel id="note-label">Vai trò</InputLabel>
                         <Select
                             labelId="note-label"
-                            id=""
+                            id="selected-type-screen"
                             value={screen.note}
                             onChange={handleChangeNote}                        
                             input={<OutlinedInput id="" label="Loại" />}
@@ -92,14 +112,12 @@ export default function MakeScreen() {
             <div className="btn-action-screen">
                 <Button variant='outlined' color='error'>Xóa</Button>
                 <Button color='success' variant='contained'
-                    onClick= {()=> {
-                        console.log("Screen data: ", screen)
-                    }}
+                    onClick= {handleOnClick}
                 >Tạo</Button>
             </div>
 
             <div className="result-screen">
-                Ket qua
+                {/* Ket qua */}
             </div>
         </div>
     );

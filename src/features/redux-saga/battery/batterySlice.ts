@@ -19,7 +19,8 @@ const batterySlice = createSlice({
             return tmpBattery
         },
         successMakeBattery(state, action: PayloadAction<BatteryDto>) {
-            console.log("Battery return from server: ", action.payload)
+            console.log("Battery return from server: ", action.payload.id)
+            return action.payload
         }
     }
 })

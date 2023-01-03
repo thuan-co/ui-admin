@@ -12,6 +12,11 @@ import cpuReducer from '../features/redux-saga/cpu/cpuSlice';
 import listCpusReducer from '../features/redux-saga/cpu/listCpusSlice';
 import listGpusReducer from '../features/redux-saga/gpu/listGpuSlice';
 import gpuReducer from '../features/redux-saga/gpu/gpuSlice';
+import cameraReducers from '../features/redux-saga/camera/cameraSlice';
+import screenReducer from '../features/redux-saga/screen/screenSlice';
+import phoneReducer from '../features/redux-saga/phone/phoneSlice';
+import { imagePhoneReducers } from '../features/redux-saga/img/imgSlice';
+import updatingPhoneReducer from '../features/redux-saga/phone/updateSlice';
 // import counterReducer from '../features/counter/counterSlice';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,7 +27,7 @@ export const store = configureStore({
     brand: brandReducers,
     // message: messageReducers,
     listBrands: listBrandsReducers,
-    phone: productsReducer,
+    phone: phoneReducer,
     battery: batteryReducers,
     connect: connectReducers,
     login: loginReducer,
@@ -30,6 +35,10 @@ export const store = configureStore({
     cpus: listCpusReducer,
     gpus: listGpusReducer,
     gpu: gpuReducer,
+    camera: cameraReducers,
+    screen: screenReducer,
+    img_phone: imagePhoneReducers,
+    update_phone: updatingPhoneReducer,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware({
   //   thunk: true,

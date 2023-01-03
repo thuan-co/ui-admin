@@ -87,7 +87,7 @@ export default function MakeConnect() {
 
     const handleMakeConnect = () => {
         
-        console.log("Connect info: ", connectDto)
+        // console.log("Connect info: ", connectDto)
         dispatch(connectActions.makeNewConnectPhone(connectDto))
     }
     return (
@@ -109,7 +109,7 @@ export default function MakeConnect() {
                         <InputLabel id="bluetooth-tech-label">Công nghệ bluetooth</InputLabel>
                         <Select
                             labelId="bluetooth-tech-label"
-                            id=""
+                            id="bluetooth-tech-selected"
                             multiple
                             value={bluetoothTechs}
                             onChange={handleChangeTechBluetooth}                        
@@ -141,7 +141,7 @@ export default function MakeConnect() {
                         <InputLabel id="wifi-tech-label">Công nghệ wifi</InputLabel>
                         <Select
                             labelId="wifi-tech-label"
-                            id=""
+                            id="wifi-tech-selected"
                             multiple
                             value={wifiTechs}
                             onChange={handleChangeTechWifi}                        

@@ -4,6 +4,7 @@ import PhoneApi from "../../../constants/phoneApi"
 import { NewPhoneReq, PhoneReq } from "../../../models"
 import { phoneActions } from "./phoneSlice"
 import * as methodTypes from '../../../constants/method.httprequest';
+import updatingPhoneReducer, { UpdatePhoneDto, updatingPhoneActions } from "./updateSlice"
 
 function* workerMakeNewPhone(action: PayloadAction<NewPhoneReq>) {
 
@@ -16,10 +17,11 @@ function* workerMakeNewPhone(action: PayloadAction<NewPhoneReq>) {
     if (result) {
         console.log("Phone id return from server: ", result)
         yield put(phoneActions.successMakeNewBasePhone(result))
+        yield put(updatingPhoneActions.updatingIdForPhoneDto(result))
         // yield delay(1000)
     }
-    console.log("Data return from server: ", result)
-    console.log("Error return from server: ", error)
+    // console.log("Data return from server: ", result)
+    // console.log("Error return from server: ", error)
 }
 
 function* watchMakeNewPhone(){   
@@ -27,7 +29,24 @@ function* watchMakeNewPhone(){
     yield takeLatest(phoneActions.makeNewBasePhone, workerMakeNewPhone)
 }
 
-export default function* newPhoneSaga() {
-    console.log("Saga for make new phone")
+export function* newPhoneSaga() {
+    // console.log("Saga for make new phone")
     yield fork(watchMakeNewPhone)
+}
+
+// Updating phone
+
+function* handleUpdatingPhone(action:PayloadAction<UpdatePhoneDto>) {
+
+    // yield delay(100)
+    const [result, error]:any[] = yield call(PhoneApi,'/update/phone',updatingPhoneActions.updatingPhone.type, methodTypes.POST, action.payload)
+
+}
+
+function* workerUpdatingPhone() {
+    yield takeLatest(updatingPhoneActions.updatingPhone, handleUpdatingPhone)
+}
+
+export function* watcherUpdatingPhone() {
+    yield fork(workerUpdatingPhone)
 }

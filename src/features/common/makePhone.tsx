@@ -11,30 +11,10 @@ import MakeConnect from './makeConnect';
 import MakeCpu from './makeCpu';
 import MakeGpu from './makeGpu';
 import MakeScreen from './makeScreen';
+import ImgPhone from './imgPhone';
 
 export default function MakePhone() {
 
-  const dispatch = useAppDispatch()
-
-  // const [value, setValue] = React.useState<Dayjs | null>(null);
-
-
-  const [phoneDto, setPhoneDto] = React.useState<PhoneReq>({
-    id: null,
-    name: "",
-    dateAt: "",
-    dimensions: "",
-    operation: "",
-    price: "",
-    weigh: "",
-  })
-
-  const handleClickMake = () => {
-    
-    console.log("send data: ", phoneDto)
-    dispatch(phoneActions.makeNewPhone(phoneDto))
-
-  }
   return (
 
     <>  
@@ -51,9 +31,8 @@ export default function MakePhone() {
       <MakeCamera />
 
       <MakeScreen />
-      <div> 
-        <Button variant="contained" onClick={handleClickMake}>Tạo mới</Button>
-      </div>
+      
+      <ImgPhone />
     </>
   );
 };

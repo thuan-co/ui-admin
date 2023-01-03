@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { listGpusAction } from '../redux-saga/gpu/listGpuSlice';
 import { gpuAction } from '../redux-saga/gpu/gpuSlice';
+import { updatingPhoneActions } from '../redux-saga/phone/updateSlice';
 
 function Result() {
     const gpu:GpuDto = useAppSelector((state:RootState)=>state.gpu)
@@ -43,8 +44,6 @@ export default function MakeGpu() {
         setIsNewGpu(false)
         isCreated.current = true
     }
-
-    
 
     const handleChangeInputGpuName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setGpu({...gpu, [e.target.name]:e.target.value})
@@ -84,7 +83,9 @@ export default function MakeGpu() {
                                 // sx = {{width: 200}}
                                 // disabled={isNewGpu}
                                 onChange={(e)=> {
-                                    setGpu({...gpu, id:e.target.value as number})
+                                    const gpuId = e.target.value as number
+                                    setGpu({...gpu, id:gpuId})
+                                    dispatch(updatingPhoneActions.updatingGpuForPhone(gpuId))
                                 }}
                             >
                                 {listGpus.map((value, key) =>(

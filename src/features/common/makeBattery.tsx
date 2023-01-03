@@ -11,8 +11,9 @@ import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import { BatteryDto } from '../../models';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { batteryActions } from '../redux-saga/battery/batterySlice';
+import { RootState } from '../../app/store';
 
 const ITEM_HEIGHT = 48
     const ITEM_PADDING_TOP = 8
@@ -55,6 +56,8 @@ export default function MakeBattery() {
     const [techName, setTechName] = React.useState<string[]>([])
 
     const [battery, setBattery] = React.useState<BatteryDto>(initialBattery)
+
+    const select = useAppSelector((state:RootState)=>state.battery)
 
     const handleChangeTechBattery = (event: SelectChangeEvent<typeof techName>) => {
         const {
@@ -129,7 +132,7 @@ export default function MakeBattery() {
                         <InputLabel id="battery-tech-label">Công nghệ pin</InputLabel>
                         <Select
                             labelId="battery-tech-label"
-                            id=""
+                            id="battery-tech-selected"
                             multiple
                             value={techName}
                             onChange={handleChangeTechBattery}
@@ -157,12 +160,27 @@ export default function MakeBattery() {
                     </FormControl>
                 </div>
             </div>
-            <div className="result-make-battery">
-                result make
-            </div>
-        
-        
-
+            {(!select.id) ? <></> : 
+                <div className="result-make-battery">
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Dung lượng</th>
+                            <th>Hỗ trợ sạc</th>
+                            <th>Công nghệ</th>
+                            <th>Loại pin</th>
+                        </tr>
+                        <tr>
+                            <td>123</td>
+                            <td>123</td>
+                            <td>123</td>
+                            <td>123</td>
+                            <td>123</td>
+                        </tr>
+                    </table>
+                </div>
+            }
+            
         </div>
 
         <div className="btn-action-battery">

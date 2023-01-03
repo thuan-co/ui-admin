@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { cpuActions } from '../redux-saga/cpu/cpuSlice';
 import { RootState } from '../../app/store';
 import { listCpusAction } from '../redux-saga/cpu/listCpusSlice';
+import { updatingPhoneActions } from '../redux-saga/phone/updateSlice';
 
 function ShowCpu() {
 
@@ -124,7 +125,9 @@ export default function MakeCpu() {
                                 // sx = {{width: 200}}
                                 disabled={isNewCpu}
                                 onChange={(e)=> {
-                                    setIdCpu(e.target.value as number)
+                                    const idCpu = e.target.value as number
+                                    setIdCpu(idCpu)
+                                    dispatch(updatingPhoneActions.updatingCpuForPhone(idCpu))
                                 }}
                             >
                                 {selector.map((value, key) =>(
