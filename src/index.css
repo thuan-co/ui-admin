@@ -59,7 +59,7 @@ code {
   height: 100%;
   margin: 0;
   position: relative;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   display: grid;
   grid-template-columns: 15% 85%;
   gap: 10px;
@@ -68,7 +68,7 @@ code {
 .right-container {
   position: relative;
   display: grid;
-  /* grid-template-rows: 10% 90%; */
+  grid-template-rows: 10% 90%;
   gap: 10px;
 }
 .main-container {

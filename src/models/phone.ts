@@ -58,7 +58,7 @@ export interface ScreenDto {
 }
 
 export interface GpuDto {
-    id: number | string
+    id: number | null
     name: string
 }
 

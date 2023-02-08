@@ -5,9 +5,9 @@ export interface UpdatePhoneDto {
     phone_id?:number|null
     battery_id?:number|null
     connect_id?:number|null
-    cpu_id?:number|null
-    gpu_id?:number|string
-    phoneImgDto?:ImgPhoneDto
+    cpu_id:number|null
+    gpu_id: number|null
+    phoneImgDto:ImgPhoneDto | null
     fcamera_id: number | null
 }
 
@@ -17,7 +17,7 @@ const initialState:UpdatePhoneDto = {
     connect_id: 0,
     cpu_id: 0,
     gpu_id: 0,
-    phoneImgDto: undefined,
+    phoneImgDto: null,
     fcamera_id: 0
 }
 

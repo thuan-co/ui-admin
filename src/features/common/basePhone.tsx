@@ -1,17 +1,16 @@
 // @flow
 import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Dayjs } from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { Dayjs } from 'dayjs';
 import React from 'react';
-import { NewPhoneReq } from '../../models';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { phoneActions } from '../redux-saga/phone/phoneSlice';
-import { BrandResp } from '../../models/brand';
-import { brandActions } from '../redux-saga/brand/brandSlice';
-import { listBrandsActions } from '../redux-saga/brand/listBrandSlice';
 import { RootState } from '../../app/store';
+import { NewPhoneReq } from '../../models';
+import { BrandResp } from '../../models/brand';
+import { listBrandsActions } from '../redux-saga/brand/listBrandSlice';
+import { phoneActions } from '../redux-saga/phone/phoneSlice';
 
 type Props = {
     
@@ -40,7 +39,7 @@ export default function BasePhone(props: Props) {
 
     const [base, setBase] = React.useState<NewPhoneReq>(initialBasePhone);
 
-    const listRAM : number[] = [3, 4, 6, 8, 16, 32]
+    const listRAM : number[] = [3, 4, 6, 8, 12, 16, 32]
 
     const handleChangeInputText = (e:React.ChangeEvent<HTMLInputElement>) => {
         

@@ -12,6 +12,14 @@ function ShowCpu() {
 
     const cpuDetails = useAppSelector((state:RootState) => state.cpu)
 
+    const dispatch = useAppDispatch()
+
+    React.useEffect(()=>{
+        if (cpuDetails.id !== null) {
+            dispatch(updatingPhoneActions.updatingCpuForPhone(cpuDetails.id))
+        }
+    }, [cpuDetails])
+
     return (
         <>
             <div>Tên CPU: {cpuDetails.name}</div>

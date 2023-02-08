@@ -11,8 +11,9 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import { ConnectDto } from '../../models';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { connectActions } from '../redux-saga/connect/connectSlice';
+import { RootState } from '../../app/store';
 
 const ITEM_HEIGHT = 48
     const ITEM_PADDING_TOP = 8
@@ -46,7 +47,10 @@ function getStyles(tech:string, listTechs: readonly string[], theme: Theme) {
 }
 
 export default function MakeConnect() {
+
     const theme = useTheme()
+
+    const select = useAppSelector((state:RootState)=>state.connect)
     
     const dispatch = useAppDispatch()
 
@@ -175,7 +179,9 @@ export default function MakeConnect() {
             </div>
             
             <div className="result-make-connect">
-                Result create new connect
+                {
+                    (select.id === null) ? <></> : <p>Tạo kết nối thành công.</p>
+                }
             </div>
 
         </div>

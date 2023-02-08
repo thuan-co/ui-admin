@@ -1,7 +1,7 @@
 
 .top-bar-container {
     position: relative;
-    background-color: red;
+    background-color: rgb(127, 191, 211);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +10,7 @@
 }
 
 .input-search {
-    display: flex;
+    display: flex; 
     flex-direction: row;
     align-items: center;
     background-color: aliceblue;

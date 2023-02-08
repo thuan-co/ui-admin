@@ -35,7 +35,6 @@ export function* newPhoneSaga() {
 }
 
 // Updating phone
-
 function* handleUpdatingPhone(action:PayloadAction<UpdatePhoneDto>) {
 
     // yield delay(100)

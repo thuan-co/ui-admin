@@ -171,11 +171,11 @@ export default function MakeBattery() {
                             <th>Loại pin</th>
                         </tr>
                         <tr>
-                            <td>123</td>
-                            <td>123</td>
-                            <td>123</td>
-                            <td>123</td>
-                            <td>123</td>
+                            <td>{select.id}</td>
+                            <td>{select.capacity}</td>
+                            <td>{select.charging}</td>
+                            <td>{select.tech}</td>
+                            <td>{select.type}</td>
                         </tr>
                     </table>
                 </div>

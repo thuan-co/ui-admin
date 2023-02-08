@@ -20,6 +20,13 @@ export function MakeProduct() {
 
   const handleClickMake = () => {
     
+    // if (selector.cpu.id !== null) {
+    //   dispatch(updatingPhoneActions.updatingCpuForPhone(selector.cpu.id))
+      
+    // }
+    // if (selector.gpu.id !== null) {
+    //   dispatch(updatingPhoneActions.updatingGpuForPhone(selector.gpu.id))
+    // }
     const phoneDto:UpdatePhoneDto = selector.update_phone
     dispatch(updatingPhoneActions.updatingPhone(phoneDto))
   }

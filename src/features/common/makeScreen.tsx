@@ -116,9 +116,6 @@ export default function MakeScreen() {
                 >Tạo</Button>
             </div>
 
-            <div className="result-screen">
-                {/* Ket qua */}
-            </div>
         </div>
     );
 };

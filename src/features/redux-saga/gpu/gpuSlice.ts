@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GpuDto } from "../../../models";
 
 const initialState:GpuDto = {
-    id: '',
+    id: 0,
     name: ''
 }
 

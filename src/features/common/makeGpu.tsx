@@ -10,6 +10,16 @@ import { updatingPhoneActions } from '../redux-saga/phone/updateSlice';
 
 function Result() {
     const gpu:GpuDto = useAppSelector((state:RootState)=>state.gpu)
+
+    const dispatch = useAppDispatch()
+
+    React.useEffect(()=>{
+
+        if (gpu.id) {
+            dispatch(updatingPhoneActions.updatingGpuForPhone(gpu.id))
+        }
+    },[gpu])
+
     return(
         <>
             <div>{gpu.name}</div>
@@ -23,7 +33,7 @@ export default function MakeGpu() {
 
     const listGpus:GpuDto[] = useAppSelector((state:RootState)=>state.gpus)
 
-    const [gpu, setGpu] = React.useState<GpuDto>({id: '', name: ''})
+    const [gpu, setGpu] = React.useState<GpuDto>({id: null, name: ''})
 
     const isCreated = React.useRef(false)
 
@@ -88,8 +98,10 @@ export default function MakeGpu() {
                                     dispatch(updatingPhoneActions.updatingGpuForPhone(gpuId))
                                 }}
                             >
-                                {listGpus.map((value, key) =>(
-                                    <MenuItem key={key} value={value.id}>{value.name}</MenuItem>
+                                {listGpus.map((value, key) => (
+                                    (value.id !== null) ? 
+                                        <MenuItem key={key} value={value.id} >{value.name}</MenuItem>
+                                    : <></>
                                 ))}
                                 
                             </Select>

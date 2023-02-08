@@ -119,9 +119,10 @@ export default function MakeCamera() {
                     onClick={handleClickMakeCam}
                 >Tạo</Button>
             </div>
-            <div className="result-make-camera">
+            
+            {/* <div className="result-make-camera">
                     result make camera
-            </div>        
+            </div>         */}
         </div>  
     );
 };
