@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
+import CustomBrowserRouter from './router/CustomBrowserRouter';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -11,9 +12,11 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <CustomBrowserRouter>
+        <App />
+      </CustomBrowserRouter> 
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
